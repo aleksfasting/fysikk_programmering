@@ -1,4 +1,3 @@
-import numpy as np
 import matplotlib.pyplot as plt
 
 
@@ -20,15 +19,13 @@ a = [g - k * abs(v[0]) * v[0] / m]     # Akselerasjonen varierer pga luftmotstan
 
 #En løkke fungerer som en tikkende klokke.
 #For hvert tikk regner vi ut ny fart og posisjon.
-i= 0
-while t[i] < T:
-    L = k * abs(v[i]) * v[i]
-    Fsum = m * g - L
-    a.append(Fsum / m)
+for i in range(int(T/dt)):
     s.append(s[i] + v[i]*dt)
     v.append(v[i] + a[i]*dt)
+    L = k * abs(v[i+1]) * v[i+1]
+    Fsum = m * g - L
+    a.append(Fsum / m)
     t.append(t[i] + dt)
-    i = i+1
   
   
 plt.figure(1)
