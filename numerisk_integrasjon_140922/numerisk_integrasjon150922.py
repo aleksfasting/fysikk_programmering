@@ -10,15 +10,11 @@ s = [0]
 a = [F/m]
 t = [0]
 
-
-
 for i in range(int(T/dt)):
     L = k * v[i-1]**2
     a.append(F/m - L/m)
     v.append( (v[i] + dt * a[i-1]))
     t.append( t[i] + dt)
-
-
 
 plt.figure(1)
 
@@ -39,15 +35,8 @@ v.sort()
 
 print(f'maksimalfarten er {v[-1]}')
 
-F= 0
-for i in range(2,len(t)-2):
-    p = ((v[i-1] * dt +dt* v[i+1]) / 2)
-    s.append(p)
-    F  = F +p
-    
-plt.plot(t[1:len(t)-2], s, 'r', label="Posisjon med L")
-plt.grid()
-plt.xlabel("Tid / s")
-plt.ylabel("Posisjon / m")
-plt.legend()
-plt.show()
+F = dt/2 * (v[0] + v[-1])
+for i in range(1,len(t)-1):
+    F = F + dt * v[i]
+
+print(F)
